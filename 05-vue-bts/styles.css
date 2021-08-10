@@ -58,13 +58,15 @@ header {
   border: 1px solid #ccc;
 }
 
-#app input:focus {
+#app input:focus,
+#app2 input:focus {
   outline: none;
   border-color: #1b995e;
   background-color: #d7fdeb;
 }
 
-#app button {
+#app button,
+#app2 button {
   font: inherit;
   cursor: pointer;
   border: 1px solid #ff0077;
@@ -75,7 +77,9 @@ header {
 }
 
 #app button:hover,
-#app button:active {
+#app button:active,
+#app2 button:hover,
+#app2 button:active {
   background-color: #ec3169;
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
