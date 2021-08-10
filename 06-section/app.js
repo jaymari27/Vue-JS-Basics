@@ -19,7 +19,12 @@ const app = Vue.createApp({
   },
 });
 
+// Component = a custom HTML element
+// arguments:
+// friend-contact = identifier
+// {}             = another app
 app.component('friend-contact', {
+  // since its a custom HTML element, we need a template
   template: `
   <li>
     <h2>{{ friend.name }}</h2>
