@@ -1,5 +1,6 @@
 # Vue-JS-Basics
 
-## Vue JS installation:
+## Please install the following:
 
 npm install vue@next
+npm install @vue/cli
