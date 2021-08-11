@@ -10,12 +10,12 @@ export default {
   props: {
     username: {
       type: String,
-      required: true
+      required: true,
     },
     userage: {
       type: Number,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
