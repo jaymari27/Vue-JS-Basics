@@ -4,7 +4,7 @@
       :topic-title="activeTopic && activeTopic.title"
       :text="activeTopic && activeTopic.fullText"
     ></active-element>
-    <knowledge-base :topics="topics" @select-topic="activateTopic"></knowledge-base>
+    <knowledge-base></knowledge-base>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
           title: 'The Basics',
           description: 'Core Vue basics you have to know',
           fullText:
-            'Vue is a great framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
+            'Vue is a great framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!'
         },
         {
           id: 'components',
@@ -26,17 +26,46 @@ export default {
           description:
             'Components are a core concept for building Vue UIs and apps',
           fullText:
-            'With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.',
-        },
+            'With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.'
+        }
       ],
-      activeTopic: null,
+      activeTopic: null
+    };
+  },
+  // Provide holds data that you can inject anywhere in your components
+  //// First way of declaring data:
+  //provide: {
+  // topics: [
+  //   {
+  //     id: 'basics',
+  //     title: 'The Basics',
+  //     description: 'Core Vue basics you have to know',
+  //     fullText:
+  //       'Vue is a great framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!'
+  //   },
+  //   {
+  //     id: 'components',
+  //     title: 'Components',
+  //     description:
+  //       'Components are a core concept for building Vue UIs and apps',
+  //     fullText:
+  //       'With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.'
+  //   }
+  // ]
+  //// More optimal way of referring data:
+  provide() {
+    return {
+      // Since topics is already declared in our data() object, we can just refer to its contents this way instead of creating a whole new object again with the exact same contents
+      topics: this.topics,
+      // Not adding () at the end since we are just pointing selectTopic to this function
+      selectTopic: this.activateTopic
     };
   },
   methods: {
     activateTopic(topicId) {
-      this.activeTopic = this.topics.find((topic) => topic.id === topicId);
-    },
-  },
+      this.activeTopic = this.topics.find(topic => topic.id === topicId);
+    }
+  }
 };
 </script>
 
