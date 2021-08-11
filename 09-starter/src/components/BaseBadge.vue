@@ -4,19 +4,19 @@
 
 <script>
 export default {
-  props: ['type', 'caption'],
+  props: ["type", "caption"],
   computed: {
     classes() {
       return {
-        'badge--admin': this.type === 'admin',
-        'badge--author': this.type === 'author',
+        "badge--admin": this.type === "admin",
+        "badge--author": this.type === "author",
       };
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .badge {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -26,12 +26,12 @@ export default {
 }
 
 .badge--admin {
-  background-color: #810036;
+  background-color: #d3749c;
   color: white;
 }
 
 .badge--author {
-  background-color: #002c8a;
+  background-color: #5a7cc4;
   color: white;
 }
 </style>
