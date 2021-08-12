@@ -1,12 +1,13 @@
 <template>
   <ul>
-    <li :class="{active: modelValue === 'poor'}">
+    <!--binding :class dynamically and adding the "active" class if the modelValue matches the following values. This will make the styles be applied to the selected button.-->
+    <li :class="{ active: modelValue === 'poor' }">
       <button type="button" @click="activate('poor')">Poor</button>
     </li>
-    <li :class="{active: modelValue === 'average'}">
+    <li :class="{ active: modelValue === 'average' }">
       <button type="button" @click="activate('average')">Average</button>
     </li>
-    <li :class="{active: modelValue === 'great'}">
+    <li :class="{ active: modelValue === 'great' }">
       <button type="button" @click="activate('great')">Great</button>
     </li>
   </ul>
@@ -27,10 +28,13 @@ export default {
   //   }
   // },
   methods: {
+    // will execute on button click
     activate(option) {
+      // passing modelValue so the parent page (TheForm) has access to the highlighted value
+      // Activate will pass the value of the parameter "option" to "update:modelValue", which the parent (TheForm) will take, and add to its HTML, and then insert that data to its data object.
       this.$emit('update:modelValue', option);
-    },
-  },
+    }
+  }
 };
 </script>
 
