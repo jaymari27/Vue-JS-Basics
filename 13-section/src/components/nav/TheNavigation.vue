@@ -3,6 +3,7 @@
     <nav>
       <ul>
         <li>
+          <!--router-link is just an anchor tag (a href) but is specific to the router package-->
           <router-link to="/teams">Teams</router-link>
         </li>
         <li>
