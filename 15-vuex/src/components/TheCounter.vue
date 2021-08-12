@@ -7,10 +7,9 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    // counter() {
-    //   return this.$store.getters.finalCounter;
-    // },
+    // mapGetters will give you an object full of computed properties. It takes an array of getters that you want computed here.
+    // Also, mapGetters must only be called inside "computed" object
     ...mapGetters('numbers', ['finalCounter'])
-  },
+  }
 };
 </script>

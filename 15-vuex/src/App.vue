@@ -23,22 +23,23 @@ export default {
     TheCounter,
     ChangeCounter,
     FavoriteValue,
-    UserAuth,
+    UserAuth
   },
   computed: {
     isAuth() {
       return this.$store.getters.userIsAuthenticated;
-    },
+    }
   },
   methods: {
     addOne() {
       // this.$store.dispatch('increase', { value: 10 });
+      // The dispatch() method is used to call actions.
       this.$store.dispatch({
         type: 'numbers/increase',
-        value: 10,
+        value: 10
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

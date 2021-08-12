@@ -14,6 +14,7 @@ export default {
       this.$store.dispatch('logout');
     }
   },
+  // showing or hiding UI depending if user is authenticated or not
   computed: {
     isAuth() {
       return this.$store.getters.userIsAuthenticated;
@@ -22,5 +23,5 @@ export default {
       return this.$store.getters.testAuth;
     }
   }
-}
+};
 </script>

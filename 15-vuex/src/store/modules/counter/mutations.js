@@ -1,4 +1,5 @@
 export default {
+  // Mutations to state objects must be done inside mutations
   increment(state) {
     state.counter = state.counter + 2;
   },

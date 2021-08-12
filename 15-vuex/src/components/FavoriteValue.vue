@@ -5,10 +5,12 @@
 
 <script>
 export default {
+  // How to access normalizedCounter when it is no longer inside the store
   computed: {
     counter() {
+      // "numbers" is the namespace, "normalizedCounter" is the getter
       return this.$store.getters['numbers/normalizedCounter'];
-    },
-  },
+    }
+  }
 };
 </script>

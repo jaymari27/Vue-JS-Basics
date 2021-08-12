@@ -1,3 +1,4 @@
+// We use getters if we decide to format or calculate things differently, but wish to only change that in very specific places, not everywhere.
 export default {
   testAuth(state) {
     return state.isLoggedIn;
