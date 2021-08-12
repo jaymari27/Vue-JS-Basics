@@ -9,7 +9,13 @@
         </div>
         <h3>My learning experience was ...</h3>
         <div class="form-control">
-          <input type="radio" id="rating-poor" value="poor" name="rating" v-model="chosenRating" />
+          <input
+            type="radio"
+            id="rating-poor"
+            value="poor"
+            name="rating"
+            v-model="chosenRating"
+          />
           <label for="rating-poor">Poor</label>
         </div>
         <div class="form-control">
@@ -23,12 +29,18 @@
           <label for="rating-average">Average</label>
         </div>
         <div class="form-control">
-          <input type="radio" id="rating-great" value="great" name="rating" v-model="chosenRating" />
+          <input
+            type="radio"
+            id="rating-great"
+            value="great"
+            name="rating"
+            v-model="chosenRating"
+          />
           <label for="rating-great">Great</label>
         </div>
-        <p
-          v-if="invalidInput"
-        >One or more input fields are invalid. Please check your provided data.</p>
+        <p v-if="invalidInput">
+          One or more input fields are invalid. Please check your provided data.
+        </p>
         <p v-if="error">{{ error }}</p>
         <div>
           <base-button>Submit</base-button>
@@ -45,7 +57,7 @@ export default {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
-      error: null,
+      error: null
     };
   },
   // emits: ['survey-submit'],
@@ -63,32 +75,40 @@ export default {
       // });
 
       this.error = null;
-      fetch('https://vue-http-demo-85e9e.firebaseio.com/surveys.json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: this.enteredName,
-          rating: this.chosenRating,
-        }),
-      })
-        .then((response) => {
+      fetch(
+        'https://vue-http-demo-80ef9-default-rtdb.asia-southeast1.firebasedatabase.app/surveys.json',
+        {
+          // this influences what kind of http request we send, like POST, DELETE, GET, PATCH, etc. We use "POST" because we are sending data.
+          method: 'POST',
+          headers: {
+            // Telling the server we are sending data in json format
+            'Content-Type': 'application/json'
+          },
+          // This is the data we are sending to the server
+          body: JSON.stringify({
+            name: this.enteredName,
+            rating: this.chosenRating
+          })
+        }
+      )
+        .then(response => {
           if (response.ok) {
             // ...
           } else {
+            // Setting an error for Status errors since catch() block cant detect it
             throw new Error('Could not save data!');
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
           this.error = error.message;
         });
 
+      // Resetting form values after submit
       this.enteredName = '';
       this.chosenRating = null;
-    },
-  },
+    }
+  }
 };
 </script>
 
