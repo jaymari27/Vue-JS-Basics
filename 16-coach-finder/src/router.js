@@ -1,15 +1,12 @@
-// Packages
-import { createWebHistory, createRouter } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
-// Components
 import CoachDetail from './pages/coaches/CoachDetail.vue';
 import CoachesList from './pages/coaches/CoachesList.vue';
-import CoachRegistration from './pages/coaches/CoachRegistration.vue';
+import CoachRegistation from './pages/coaches/CoachRegistration.vue';
 import ContactCoach from './pages/requests/ContactCoach.vue';
-import RequestReceived from './pages/requests/RequestReceived.vue';
+import RequestsReceived from './pages/requests/RequestsReceived.vue';
 import NotFound from './pages/NotFound.vue';
 
-// Router
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -18,11 +15,13 @@ const router = createRouter({
     {
       path: '/coaches/:id',
       component: CoachDetail,
-      props: true, // by setting this to true, the view router will pass the value ID in the url as a prop to CoachDetail
-      children: [{ path: 'contact', component: ContactCoach }]
-    }, // /coaches/c1/contact
-    { path: '/register', component: CoachRegistration },
-    { path: '/requests', component: RequestReceived },
+      props: true,
+      children: [
+        { path: 'contact', component: ContactCoach } // /coaches/c1/contact
+      ]
+    },
+    { path: '/register', component: CoachRegistation },
+    { path: '/requests', component: RequestsReceived },
     { path: '/:notFound(.*)', component: NotFound }
   ]
 });

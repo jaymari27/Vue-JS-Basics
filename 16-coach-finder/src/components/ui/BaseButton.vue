@@ -10,17 +10,15 @@
 <script>
 export default {
   props: {
-    // Mode is for styling css of the elements
     mode: {
       type: String,
       required: false,
       default: null
     },
-    // Link will signal to us if we should get a button, or a link
     link: {
       type: Boolean,
       required: false,
-      default: false // By default, we render a button
+      default: false
     },
     to: {
       type: String,
@@ -28,7 +26,7 @@ export default {
       default: '/'
     }
   }
-};
+}
 </script>
 
 <style scoped>

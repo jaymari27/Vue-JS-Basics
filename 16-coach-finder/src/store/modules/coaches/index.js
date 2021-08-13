@@ -1,14 +1,12 @@
-// This is where we merge all the getters, mutations, actions, etc. on coaches.
-
+import mutations from './mutations.js';
 import actions from './actions.js';
 import getters from './getters.js';
-import mutations from './mutations.js';
 
 export default {
   namespaced: true,
   state() {
-    // Returning state objects
     return {
+      lastFetch: null,
       coaches: [
         {
           id: 'c1',
