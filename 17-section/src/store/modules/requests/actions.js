@@ -4,20 +4,15 @@ export default {
       userEmail: payload.email,
       message: payload.message
     };
-    const response = await fetch(
-      `https://vue-http-demo-80ef9-default-rtdb.asia-southeast1.firebasedatabase.app/${payload.coachId}.json`,
-      {
-        method: 'POST',
-        body: JSON.stringify(newRequest)
-      }
-    );
+    const response = await fetch(`https://vue-http-demo-85e9e.firebaseio.com/requests/${payload.coachId}.json`, {
+      method: 'POST',
+      body: JSON.stringify(newRequest)
+    });
 
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(
-        responseData.message || 'Failed to send request.'
-      );
+      const error = new Error(responseData.message || 'Failed to send request.');
       throw error;
     }
 
@@ -28,17 +23,11 @@ export default {
   },
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
-    const token = context.rootGetters.token;
-    const response = await fetch(
-      `https://vue-http-demo-80ef9-default-rtdb.asia-southeast1.firebasedatabase.app/${coachId}.json?auth=` +
-        token
-    );
+    const response = await fetch(`https://vue-http-demo-85e9e.firebaseio.com/requests/${coachId}.json`);
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(
-        responseData.message || 'Failed to fetch requests.'
-      );
+      const error = new Error(responseData.message || 'Failed to fetch requests.');
       throw error;
     }
 

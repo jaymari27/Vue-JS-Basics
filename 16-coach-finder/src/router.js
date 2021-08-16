@@ -6,6 +6,8 @@ import CoachRegistation from './pages/coaches/CoachRegistration.vue';
 import ContactCoach from './pages/requests/ContactCoach.vue';
 import RequestsReceived from './pages/requests/RequestsReceived.vue';
 import NotFound from './pages/NotFound.vue';
+import UserAuth from './pages/auth/UserAuth.vue';
+import store from './store/index.js';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,10 +22,33 @@ const router = createRouter({
         { path: 'contact', component: ContactCoach } // /coaches/c1/contact
       ]
     },
-    { path: '/register', component: CoachRegistation },
-    { path: '/requests', component: RequestsReceived },
+    {
+      path: '/register',
+      component: CoachRegistation,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/requests',
+      component: RequestsReceived,
+      meta: { requiresAuth: true }
+    },
+    { path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
     { path: '/:notFound(.*)', component: NotFound }
   ]
+});
+
+//// Global navigation guard
+// Preventing users from entering pages if they are not authenticated
+router.beforeEach(function(to, _, next) {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    // If a page requires authentication but the user is not authenticated, redirect them to login
+    next('/auth');
+  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
+    // If page does not require authentication and user is authenticated, proceed to home page
+    next('/coaches');
+  } else {
+    next();
+  }
 });
 
 export default router;
