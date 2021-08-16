@@ -59,5 +59,17 @@ export default {
       userId: responseData.localId,
       tokenExpiration: responseData.expiresIn
     });
+  },
+  logout(context) {
+    // state.token = null;
+    // state.userId = null;
+    // state.tokenExpiration = null;
+
+    // Since we are in the "actions", instead of directly mutating the information, we will use commit method to call the setUser mutation method, and set null as follows:
+    context.commit('setUser', {
+      token: null,
+      userId: null,
+      tokenExpiration: null
+    });
   }
 };

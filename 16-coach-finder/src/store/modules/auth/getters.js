@@ -4,5 +4,9 @@ export default {
   },
   token(state) {
     return state.token;
+  },
+  isAuthenticated(state) {
+    // 「!!」 this will convert to true boolean
+    return !!state.token;
   }
 };
